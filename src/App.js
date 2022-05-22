@@ -1,9 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import Header from "./Pages/Shared/Header";
 
 function App() {
   return (
-     <h2>Air condition</h2>
+    <div>
+      <Header></Header>
+    </div>
   );
 }
 
