@@ -2,17 +2,25 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Register = () => {
+  const handleRegister = event =>{
+    event.preventDefault();
+    const name = event.target.name.value;
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    console.log('Register',name,email,password)
+  }
   return (
     <div className="row">
       <div className="col-lg-6 mx-auto my-5 border p-5">
         <h2>Please register</h2>
-        <form>
+        <form onSubmit={handleRegister}>
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">
               Your name
             </label>
             <input
               type="text"
+              name="name"
               class="form-control"
               id="exampleFormControlInput1"
             />
@@ -23,6 +31,7 @@ const Register = () => {
             </label>
             <input
               type="email"
+              name="email"
               class="form-control"
               id="exampleFormControlInput2"
             />
@@ -33,6 +42,7 @@ const Register = () => {
             </label>
             <input
               type="password"
+              name="password"
               class="form-control"
               id="exampleFormControlInput3"
             />
