@@ -5,6 +5,7 @@ import Footer from "./Pages/Shared/Footer";
 import Home from "./Pages/Home/Home";
 import { Route, Routes } from "react-router-dom";
 import NotFound from "./Pages/Shared/NotFound";
+import Login from "./Pages/Login/Login";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
          <Route path="/" element={<Home></Home>}/>
          <Route path="/home" element={<Home></Home>}/>
+         <Route path="/login" element={<Login></Login>}/>
          <Route path="*" element={<NotFound></NotFound>}/>
       </Routes>
     <Footer></Footer>
