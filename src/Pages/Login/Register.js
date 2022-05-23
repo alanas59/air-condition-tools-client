@@ -64,6 +64,7 @@ const Register = () => {
           </div>
           <input className="btn btn-info" type="submit" value="Register" />
         </form>
+        <p className="text-danger my-2">{error?.message}</p>
         <p className="my-2">
           Already have an account? <Link to="/login">Please login</Link>
         </p>
