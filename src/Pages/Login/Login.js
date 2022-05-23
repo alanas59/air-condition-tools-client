@@ -1,14 +1,20 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from "../../firebase.init";
 
 
 const Login = () => {
   const navigate = useNavigate();
   const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
+  const [
+    signInWithEmailAndPassword,
+    user,
+    loading,
+    error,
+  ] = useSignInWithEmailAndPassword(auth);
   
-  if(guser){
+  if(user || guser){
     console.log(guser);
     navigate('/');
   }
@@ -16,7 +22,7 @@ const Login = () => {
     event.preventDefault();
     const email = event.target.email.value;
     const password = event.target.password.value;
-    console.log("Login", email, password);
+    signInWithEmailAndPassword(email, password);
   };
   return (
     <div className="row">
@@ -47,7 +53,7 @@ const Login = () => {
           </div>
           <input className="btn btn-info" type="submit" value="Login" />
         </form>
-        <p className="my-2 text-danger">{gerror?.message}</p>
+        <p className="my-2 text-danger">{error?.message || gerror?.message}</p>
         <p className="my-2">
           New to this website? <Link to="/register">Please register</Link>
         </p>
