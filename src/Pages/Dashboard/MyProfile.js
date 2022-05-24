@@ -1,17 +1,125 @@
-import React from 'react';
+import React,{useState} from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
+import { toast } from "react-toastify";
 
 const MyProfile = () => {
-    return (
-        <div>
-            <div className="container">
-                <div className="row">
-                    <div className="col-lg-8">
-                       <h2 className=''>About Myself</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
+  const [user, loading, error] = useAuthState(auth);
+  console.log(user);
+
+
+  const handleSubmit = event =>{
+      event.preventDefault();
+      const name = user?.displayName;
+      const email = user?.email;
+      const education = event.target.education.value;
+      const location = event.target.location.value;
+      const phone = event.target.phone.value;
+      const profile = event.target.profile.value;
+      const data = {
+          name,
+          email,
+          education,
+          location,
+          phone,
+          profile
+      }
+      fetch("http://localhost:5000/user", {
+        method: "PUT", // or 'PUT
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if(data){
+              toast.success('Saved successfully');
+              event.target.reset();
+          }
+        });
+ 
+  }
+  return (
+    <div>
+      <div className="border p-5">
+        <h4>My Profile</h4>
+        <form onSubmit={handleSubmit}>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">
+              Your Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              disabled
+              value={user.displayName}
+              class="form-control"
+              id="exampleFormControlInput1"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">
+              Email address
+            </label>
+            <input
+              type="email"
+              name="email"
+              disabled
+              value={user.email}
+              class="form-control"
+              id="exampleFormControlInput1"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">
+              Your Education
+            </label>
+            <input
+              type="text"
+              name="education"
+              class="form-control"
+              id="exampleFormControlInput1"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput2" class="form-label">
+              Your location 
+            </label>
+            <input
+              type="text"
+              name="location"
+              class="form-control"
+              id="exampleFormControlInput2"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput2" class="form-label">
+              Phone number
+            </label>
+            <input
+              type="text"
+              name="phone"
+              class="form-control"
+              id="exampleFormControlInput2"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput2" class="form-label">
+              Linkedin profile link
+            </label>
+            <input
+              type="text"
+              name="profile"
+              class="form-control"
+              id="exampleFormControlInput2"
+            />
+          </div>
+          <input className="btn btn-info" type="submit" value="Save" />
+        </form>
+      </div>
+    </div>
+  );
 };
 
 export default MyProfile;

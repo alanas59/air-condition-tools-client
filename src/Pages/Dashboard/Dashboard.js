@@ -14,7 +14,7 @@ const Dashboard = () => {
               <Link to="/dashboard/add-review">Add a reivew</Link>
             </li>
             <li class="list-group-item">
-              <Link to="/my-profile">My Profile</Link>
+              <Link to="/dashboard/my-profile">My Profile</Link>
             </li>
           </ul>
         </div>

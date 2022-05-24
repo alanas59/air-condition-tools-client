@@ -25,12 +25,13 @@ function App() {
          <Route path="/login" element={<Login></Login>}/>
          <Route path="/register" element={<Register></Register>}/>
          <Route path="/blogs" element={<Blogs></Blogs>}/>
+         {/* nested route */}
          <Route path="/dashboard" element={<Dashboard></Dashboard>}>
             <Route index  element={<MyOrders></MyOrders>}></Route>
             <Route path="add-review" element={<Review></Review>}></Route>
-            <Route path="my-profile" element={<MyProfile></MyProfile>}></Route>
+            <Route path="my-profile" element={<MyProfile></MyProfile>}/>
          </Route>
-         <Route path="/my-profile" element={<MyProfile></MyProfile>}/>
+        
          <Route path="*" element={<NotFound></NotFound>}/>
         
       </Routes>
