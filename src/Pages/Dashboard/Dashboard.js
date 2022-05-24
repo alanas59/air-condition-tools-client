@@ -7,14 +7,14 @@ const Dashboard = () => {
       <div className="row g-4">
         <div className="col-lg-4">
           <ul class="list-group">
-            <li class="list-group-item">
+          <li class="list-group-item">
               <Link to="/dashboard/my-orders">My Orders</Link>
             </li>
             <li class="list-group-item">
               <Link to="/dashboard/add-review">Add a reivew</Link>
             </li>
             <li class="list-group-item">
-              <Link to="/dashboard/my-profile">My Profile</Link>
+              <Link to="/my-profile">My Profile</Link>
             </li>
           </ul>
         </div>

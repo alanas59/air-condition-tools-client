@@ -13,10 +13,29 @@ const Login = () => {
     loading,
     error,
   ] = useSignInWithEmailAndPassword(auth);
+
+
   
   if(user || guser){
+   
     console.log(guser);
-    navigate('/');
+    
+    const data = {
+
+    }
+    fetch("http://localhost:5000/user", {
+      method: "PUT", // or 'PUT
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('login',data);
+      });
+   
+    //navigate('/');
   }
   const handleLogin = (event) => {
     event.preventDefault();

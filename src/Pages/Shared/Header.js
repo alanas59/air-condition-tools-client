@@ -53,6 +53,11 @@ const Header = () => {
                 </Link>
               </li>
             )}
+             <li className="nav-item">
+              <Link className="nav-link" to="/my-profile">
+                 My Profile
+              </Link>
+            </li>
             <li className="nav-item">
               {user ? (
                 <button className="btn btn-info" onClick={logout}>
@@ -64,6 +69,7 @@ const Header = () => {
                 </Link>
               )}
             </li>
+           
         
           </ul>
         </div>

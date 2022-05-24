@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from "../../firebase.init";
 import { toast } from "react-toastify";
 
 const Register = () => {
+  const [userName,setUserName] = useState("");
   const [
     createUserWithEmailAndPassword,
     user,
@@ -13,15 +14,36 @@ const Register = () => {
   ] = useCreateUserWithEmailAndPassword(auth,{sendEmailVerification:true});
 
   if(user){
-    console.log(user);
+  
     toast.success('Successfully registered');
+    const name = user?.user.displayName;
+    const email = user?.user.email;
+    console.log(name,email);
+    const userData = {
+      name:userName,
+      email
+    }
+    fetch("http://localhost:5000/user", {
+      method: "PUT", // or 'PUT
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('register',data);
+      });
+  
   }
   const handleRegister = event =>{
     event.preventDefault();
     const name = event.target.name.value;
+    setUserName(name);
     const email = event.target.email.value;
     const password = event.target.password.value;
-    createUserWithEmailAndPassword(email, password);
+   createUserWithEmailAndPassword(email, password);
+   
     
   }
   return (

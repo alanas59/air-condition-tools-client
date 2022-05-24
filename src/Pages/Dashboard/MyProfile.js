@@ -3,7 +3,13 @@ import React from 'react';
 const MyProfile = () => {
     return (
         <div>
-            <h2>My Profile</h2>
+            <div className="container">
+                <div className="row">
+                    <div className="col-lg-8">
+                       <h2 className=''>About Myself</h2>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };
