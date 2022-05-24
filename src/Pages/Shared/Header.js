@@ -9,9 +9,9 @@ const Header = () => {
   const navigate = useNavigate();
   const logout = () => {
     signOut(auth);
-    navigate('/login');
+    navigate("/login");
   };
-  
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <div className="container">
@@ -37,21 +37,34 @@ const Header = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/blogs">
+              <Link className="nav-link" to="/blogs">
                 Blogs
               </Link>
             </li>
-            <li className="nav-item">
-             {  user ?
-                <button 
-                className="btn btn-info"
-                onClick={logout}
-                >Logout</button>
-                :<Link className="nav-link" to="/login">
-                Login
+            {
+             user && (
+              <li className="nav-item">
+                <Link
+                  className="nav-link"
+                 
+                  to="/dashboard"
+                >
+                  Dashboard
                 </Link>
-             }
+              </li>
+            )}
+            <li className="nav-item">
+              {user ? (
+                <button className="btn btn-info" onClick={logout}>
+                  Logout
+                </button>
+              ) : (
+                <Link className="nav-link" to="/login">
+                  Login
+                </Link>
+              )}
             </li>
+        
           </ul>
         </div>
       </div>
