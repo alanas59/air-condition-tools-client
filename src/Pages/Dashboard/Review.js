@@ -1,12 +1,35 @@
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
+import auth from "../../firebase.init";
 
 const Review = () => {
-  const handleReview = event =>{
-      event.preventDefault();
-      const rating = event.target.rating.value;
-      const description = event.target.description.value;
-      console.log(rating,description);
-  }
+  const [user] = useAuthState(auth);
+  console.log(user);
+  const handleReview = (event) => {
+    event.preventDefault();
+    const rating = event.target.rating.value;
+    const description = event.target.description.value;
+    const review = {
+        name:user.displayName,
+        email:user.email,
+        rating,
+        description
+    }
+    fetch("http://localhost:5000/review", {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(review),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if(data.insertedId){
+            toast.success('Thanks for your review');
+        }
+      });
+  };
   return (
     <div className="col-lg-8 mt-2 border border-info p-4">
       <h2>Review</h2>
@@ -22,12 +45,11 @@ const Review = () => {
             max="5"
             class="form-control"
             id="exampleFormControlInput1"
-           
           />
         </div>
         <div class="mb-3">
           <label for="exampleFormControlTextarea1" class="form-label">
-           Write Something
+            Write Something
           </label>
           <textarea
             class="form-control"
