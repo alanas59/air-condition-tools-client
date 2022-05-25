@@ -1,45 +1,44 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const MyProfile = () => {
   const [user, loading, error] = useAuthState(auth);
   console.log(user);
 
-
-  const handleSubmit = event =>{
-      event.preventDefault();
-      const name = user?.displayName;
-      const email = user?.email;
-      const education = event.target.education.value;
-      const location = event.target.location.value;
-      const phone = event.target.phone.value;
-      const profile = event.target.profile.value;
-      const data = {
-          name,
-          email,
-          education,
-          location,
-          phone,
-          profile
-      }
-      fetch("http://localhost:5000/user", {
-        method: "PUT", // or 'PUT
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if(data){
-              toast.success('Saved successfully');
-              event.target.reset();
-          }
-        });
- 
-  }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const name = user?.displayName;
+    const email = user?.email;
+    const education = event.target.education.value;
+    const location = event.target.location.value;
+    const phone = event.target.phone.value;
+    const profile = event.target.profile.value;
+    const data = {
+      name,
+      email,
+      education,
+      location,
+      phone,
+      profile,
+    };
+    fetch("http://localhost:5000/user", {
+      method: "PUT", // or 'PUT
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data) {
+          toast.success("Saved successfully");
+          event.target.reset();
+        }
+      });
+  };
   return (
     <div>
       <div className="border p-5">
@@ -53,7 +52,7 @@ const MyProfile = () => {
               type="text"
               name="name"
               disabled
-              value={user.displayName}
+              value={user?.displayName}
               class="form-control"
               id="exampleFormControlInput1"
             />
@@ -66,7 +65,7 @@ const MyProfile = () => {
               type="email"
               name="email"
               disabled
-              value={user.email}
+              value={user?.email}
               class="form-control"
               id="exampleFormControlInput1"
             />
@@ -84,7 +83,7 @@ const MyProfile = () => {
           </div>
           <div class="mb-3">
             <label for="exampleFormControlInput2" class="form-label">
-              Your location 
+              Your location
             </label>
             <input
               type="text"
@@ -117,6 +116,9 @@ const MyProfile = () => {
           </div>
           <input className="btn btn-info" type="submit" value="Save" />
         </form>
+        <p className="mt-2">
+          <Link to={`/dashboard/update/${user?.email}`}>Update</Link>
+        </p>
       </div>
     </div>
   );

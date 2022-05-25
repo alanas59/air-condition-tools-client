@@ -14,6 +14,7 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import MyOrders from "./Pages/Dashboard/MyOrders";
 import Review from "./Pages/Dashboard/Review";
 import MyProfile from "./Pages/Dashboard/MyProfile";
+import Update from "./Pages/Dashboard/Update";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route index  element={<MyOrders></MyOrders>}></Route>
             <Route path="add-review" element={<Review></Review>}></Route>
             <Route path="my-profile" element={<MyProfile></MyProfile>}/>
+            <Route path="update/:email" element={<Update></Update>}/>
          </Route>
         
          <Route path="*" element={<NotFound></NotFound>}/>
