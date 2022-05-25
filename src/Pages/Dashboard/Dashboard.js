@@ -16,6 +16,9 @@ const Dashboard = () => {
             <li class="list-group-item">
               <Link to="/dashboard/my-profile">My Profile</Link>
             </li>
+            <li class="list-group-item">
+              <Link to="/dashboard/manage-products">Manage Products</Link>
+            </li>
           </ul>
         </div>
         <div className="col-lg-8 ">
