@@ -19,6 +19,9 @@ const Dashboard = () => {
             <li class="list-group-item">
               <Link to="/dashboard/manage-products">Manage Products</Link>
             </li>
+            <li class="list-group-item">
+              <Link to="/dashboard/make-admin">Make Admin</Link>
+            </li>
           </ul>
         </div>
         <div className="col-lg-8 ">
