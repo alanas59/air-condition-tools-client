@@ -17,6 +17,7 @@ import MyProfile from "./Pages/Dashboard/MyProfile";
 import Update from "./Pages/Dashboard/Update";
 import ManageProducts from "./Pages/Dashboard/ManageProducts";
 import MakeAdmin from "./Pages/Dashboard/MakeAdmin";
+import AddProduct from "./Pages/Dashboard/AddProduct";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
             <Route path="update/:email" element={<Update></Update>}/>
             <Route path="manage-products" element={<ManageProducts></ManageProducts>}/>
             <Route path="make-admin" element={<MakeAdmin></MakeAdmin>}/>
+            <Route path="add-product" element={<AddProduct></AddProduct>}/>
          </Route>
         
          <Route path="*" element={<NotFound></NotFound>}/>

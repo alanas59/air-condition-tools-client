@@ -22,6 +22,9 @@ const Dashboard = () => {
             <li class="list-group-item">
               <Link to="/dashboard/make-admin">Make Admin</Link>
             </li>
+            <li class="list-group-item">
+              <Link to="/dashboard/add-product">Add Product</Link>
+            </li>
           </ul>
         </div>
         <div className="col-lg-8 ">
