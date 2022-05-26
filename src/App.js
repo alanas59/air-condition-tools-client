@@ -33,6 +33,7 @@ function App() {
         {/* nested route */}
         <Route path="/dashboard" element={<Dashboard></Dashboard>}>
           <Route index element={<MyProfile></MyProfile>} />
+          <Route path="my-profile" element={<MyProfile></MyProfile>} />
           <Route path="add-review" element={<Review></Review>}></Route>
           <Route path="update/:email" element={<Update></Update>} />
           <Route
