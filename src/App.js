@@ -18,6 +18,7 @@ import Update from "./Pages/Dashboard/Update";
 import ManageProducts from "./Pages/Dashboard/ManageProducts";
 import MakeAdmin from "./Pages/Dashboard/MakeAdmin";
 import AddProduct from "./Pages/Dashboard/AddProduct";
+import Purchase from "./Pages/Purchase/Purchase";
 
 function App() {
   return (
@@ -39,7 +40,7 @@ function App() {
             <Route path="make-admin" element={<MakeAdmin></MakeAdmin>}/>
             <Route path="add-product" element={<AddProduct></AddProduct>}/>
          </Route>
-        
+         <Route path="/purchase/:id" element={<Purchase></Purchase>}/>
          <Route path="*" element={<NotFound></NotFound>}/>
         
       </Routes>
