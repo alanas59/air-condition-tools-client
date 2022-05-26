@@ -9,7 +9,7 @@ const CheckoutForm = (props) => {
   const [clientSecret, setClientSecret] = useState("");
   const [transactionId, setTransactionId] = useState("");
   const { order } = props;
-  const { price ,email } = order;
+  const { price ,email,_id} = order;
 
   useEffect(() => {
     if (price) {
@@ -76,6 +76,21 @@ const CheckoutForm = (props) => {
         console.log(paymentIntent)
         setTransactionId(paymentIntent.id);
         setSuccess('Congrats!your payment is confirmed.')
+        const payment = {
+            productId:_id,
+            transactionId:paymentIntent.id
+        }
+        fetch(`http://localhost:5000/order/${_id}`,{
+            method:'PATCH',
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify(payment)
+        })
+        .then(res=>res.json())
+        .then(data => {
+            console.log('Order anas',data);
+        })
     }
   };
 
