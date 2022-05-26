@@ -7,8 +7,8 @@ import { Route, Routes } from "react-router-dom";
 import NotFound from "./Pages/Shared/NotFound";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Login/Register";
-import {ToastContainer} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Blogs from "./Pages/Blogs/Blogs";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import MyOrders from "./Pages/Dashboard/MyOrders";
@@ -25,27 +25,29 @@ function App() {
     <div>
       <Header></Header>
       <Routes>
-         <Route path="/" element={<Home></Home>}/>
-         <Route path="/home" element={<Home></Home>}/>
-         <Route path="/login" element={<Login></Login>}/>
-         <Route path="/register" element={<Register></Register>}/>
-         <Route path="/blogs" element={<Blogs></Blogs>}/>
-         {/* nested route */}
-         <Route path="/dashboard" element={<Dashboard></Dashboard>}>
-            <Route index  element={<MyOrders></MyOrders>}></Route>
-            <Route path="add-review" element={<Review></Review>}></Route>
-            <Route path="my-profile" element={<MyProfile></MyProfile>}/>
-            <Route path="update/:email" element={<Update></Update>}/>
-            <Route path="manage-products" element={<ManageProducts></ManageProducts>}/>
-            <Route path="make-admin" element={<MakeAdmin></MakeAdmin>}/>
-            <Route path="add-product" element={<AddProduct></AddProduct>}/>
-         </Route>
-         <Route path="/purchase/:id" element={<Purchase></Purchase>}/>
-         <Route path="*" element={<NotFound></NotFound>}/>
-        
+        <Route path="/" element={<Home></Home>} />
+        <Route path="/home" element={<Home></Home>} />
+        <Route path="/login" element={<Login></Login>} />
+        <Route path="/register" element={<Register></Register>} />
+        <Route path="/blogs" element={<Blogs></Blogs>} />
+        {/* nested route */}
+        <Route path="/dashboard" element={<Dashboard></Dashboard>}>
+          <Route index element={<MyProfile></MyProfile>} />
+          <Route path="add-review" element={<Review></Review>}></Route>
+          <Route path="update/:email" element={<Update></Update>} />
+          <Route
+            path="manage-products"
+            element={<ManageProducts></ManageProducts>}
+          />
+          <Route path="make-admin" element={<MakeAdmin></MakeAdmin>} />
+          <Route path="add-product" element={<AddProduct></AddProduct>} />
+          <Route path="my-orders" element={<MyOrders></MyOrders>} />
+        </Route>
+        <Route path="/purchase/:id" element={<Purchase></Purchase>} />
+        <Route path="*" element={<NotFound></NotFound>} />
       </Routes>
-    <Footer></Footer>
-    <ToastContainer />
+      <Footer></Footer>
+      <ToastContainer />
     </div>
   );
 }
