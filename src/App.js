@@ -19,6 +19,7 @@ import ManageProducts from "./Pages/Dashboard/ManageProducts";
 import MakeAdmin from "./Pages/Dashboard/MakeAdmin";
 import AddProduct from "./Pages/Dashboard/AddProduct";
 import Purchase from "./Pages/Purchase/Purchase";
+import Payment from "./Pages/Dashboard/Payment";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route index element={<MyProfile></MyProfile>} />
           <Route path="my-profile" element={<MyProfile></MyProfile>} />
           <Route path="add-review" element={<Review></Review>}></Route>
+          <Route path="payment/:id" element={<Payment></Payment>}></Route>
           <Route path="update/:email" element={<Update></Update>} />
           <Route
             path="manage-products"
@@ -44,6 +46,7 @@ function App() {
           <Route path="add-product" element={<AddProduct></AddProduct>} />
           <Route path="my-orders" element={<MyOrders></MyOrders>} />
         </Route>
+          {/* nested route */}
         <Route path="/purchase/:id" element={<Purchase></Purchase>} />
         <Route path="*" element={<NotFound></NotFound>} />
       </Routes>

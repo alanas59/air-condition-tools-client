@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 
@@ -7,6 +8,7 @@ const MyOrders = () => {
   const [user, loading] = useAuthState(auth);
   const [orders, setOrders] = useState([]);
   const [success,setSuccess] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
     fetch(`http://localhost:5000/orders/${user?.email}`)
       .then((res) => res.json())
@@ -29,6 +31,9 @@ const MyOrders = () => {
         });
     }
   };
+  const handlePay = id =>{
+    navigate(`/dashboard/payment/${id}`)
+  }
   return (
     <div>
       <h2>My Orders{orders.length}</h2>
@@ -53,7 +58,9 @@ const MyOrders = () => {
               <td>{order.price}</td>
               {!order?.paid ? (
                 <td className="d-flex">
-                  <button className="btn btn-info me-2">Pay</button>
+                  <button 
+                  onClick={()=>handlePay(order._id)}
+                  className="btn btn-info me-2">Pay</button>
                   <button
                     onClick={() => handleCancel(order._id)}
                     className="btn btn-danger"
