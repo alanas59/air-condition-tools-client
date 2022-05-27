@@ -16,7 +16,7 @@ const Dashboard = () => {
     <div className="container my-5">
       <h2 className="text-center my-4"><span style={{color:'#5A37CE'}}>Welcome!</span> to your dashboard</h2>
       <div className="row g-4">
-        <div className="col-lg-3 shadow  rounded" style={{maxHeight:'400px'}}>
+        <div className="col-lg-3 shadow rounded">
           <ul class="list-group mt-4">
             <li class="list-group-item">
               <Link to="/dashboard/my-profile">My Profile</Link>
@@ -29,6 +29,7 @@ const Dashboard = () => {
                 <li class="list-group-item">
                   <Link to="/dashboard/add-review">Add a reivew</Link>
                 </li>
+               
               </>
             ) : (
               <>
@@ -40,6 +41,9 @@ const Dashboard = () => {
                 </li>
                 <li class="list-group-item">
                   <Link to="/dashboard/add-product">Add Product</Link>
+                </li>
+                <li class="list-group-item">
+                  <Link to="/dashboard/manage-orders">Manage all orders</Link>
                 </li>
               </>
             )}

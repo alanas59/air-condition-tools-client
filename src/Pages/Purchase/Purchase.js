@@ -34,6 +34,8 @@ const Purchase = () => {
         address,
         phone,
         price,
+        productName:product.name,
+        status:false,
         productId
      }
      fetch('http://localhost:5000/order',{

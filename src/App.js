@@ -20,6 +20,7 @@ import MakeAdmin from "./Pages/Dashboard/MakeAdmin";
 import AddProduct from "./Pages/Dashboard/AddProduct";
 import Purchase from "./Pages/Purchase/Purchase";
 import Payment from "./Pages/Dashboard/Payment";
+import ManageOrders from "./Pages/Dashboard/ManageOrders";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
           <Route path="make-admin" element={<MakeAdmin></MakeAdmin>} />
           <Route path="add-product" element={<AddProduct></AddProduct>} />
           <Route path="my-orders" element={<MyOrders></MyOrders>} />
+          <Route path="manage-orders" element={<ManageOrders></ManageOrders>} />
         </Route>
           {/* nested route */}
         <Route path="/purchase/:id" element={<Purchase></Purchase>} />
