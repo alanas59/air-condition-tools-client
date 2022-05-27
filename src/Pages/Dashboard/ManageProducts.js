@@ -43,7 +43,7 @@ const ManageProducts = () => {
           {products.map((product) => (
             <tr>
               <td>
-                <img style={{ width: "100px" }} src={product.img} />
+                <img style={{ width: "100px" }} src={product.img}  alt="..."/>
               </td>
               <td>{product.name}</td>
               <td>{product.price}</td>
@@ -97,6 +97,7 @@ const ManageProducts = () => {
                 type="button"
                 onClick={() => handleDelete(productId)}
                 class="btn btn-primary"
+                data-bs-dismiss="modal"
               >
                 yes
               </button>
