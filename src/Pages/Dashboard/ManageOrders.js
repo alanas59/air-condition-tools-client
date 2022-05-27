@@ -9,6 +9,7 @@ const ManageOrders = () => {
       .then(res => res.json())
       .then(data => setOrders(data))
   },[success])
+  console.log(success);
   return (
     <div>
       <h4 style={{ color:"#CB4695" }}>Manage Orders</h4>
@@ -20,6 +21,7 @@ const ManageOrders = () => {
             <th scope="col">PaymentId</th>
             <th scope="col">Payment</th>
             <th scope="col">Status</th>
+            <th scope="col">Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -27,6 +29,7 @@ const ManageOrders = () => {
               orders.map(order => 
               <ManageOrder
               order={order}
+              success={success}
               setSuccess={setSuccess}
               ></ManageOrder>)
           }
