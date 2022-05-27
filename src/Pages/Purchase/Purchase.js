@@ -67,7 +67,7 @@ const Purchase = () => {
     <div className="container">
       <div className="row my-5">
         <div className="col-lg-6">
-          <div class="card text-center">
+          <div class="shadow-sm text-center">
             <img src={product.img} class="card-img-top" alt="..." />
             <div class="card-body">
               <h5 class="card-title">{product.name}</h5>
@@ -78,10 +78,10 @@ const Purchase = () => {
             </div>
           </div>
         </div>
-        <div className="col-lg-6 border p-4">
+        <div className="col-lg-6 shadow-sm rounded p-4">
           {/* user */}
 
-          <div className="border p-4">
+          <div className="p-4">
             <form onSubmit={handleSubmit}>
               <h2>Order Now</h2>
               <div class="mb-3">
