@@ -31,8 +31,8 @@ const Review = () => {
       });
   };
   return (
-    <div className="col-lg-8 mt-2 border border-info p-4">
-      <h2>Review</h2>
+    <div className="col-lg-8 shadow rounded p-4">
+      <h2 style={{color:'#CB4695'}}>Review</h2>
       <form onSubmit={handleReview}>
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">

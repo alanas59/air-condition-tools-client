@@ -14,9 +14,10 @@ const Dashboard = () => {
   }, [user]);
   return (
     <div className="container my-5">
+      <h2 className="text-center my-4"><span style={{color:'#5A37CE'}}>Welcome!</span> to your dashboard</h2>
       <div className="row g-4">
-        <div className="col-lg-4">
-          <ul class="list-group">
+        <div className="col-lg-3 shadow  rounded" style={{maxHeight:'400px'}}>
+          <ul class="list-group mt-4">
             <li class="list-group-item">
               <Link to="/dashboard/my-profile">My Profile</Link>
             </li>
@@ -44,8 +45,8 @@ const Dashboard = () => {
             )}
           </ul>
         </div>
-        <div className="col-lg-8 ">
-          <h2 className="">Your Dashboard</h2>
+        <div className="col-lg-8 ms-2">
+         
           <Outlet />
         </div>
       </div>

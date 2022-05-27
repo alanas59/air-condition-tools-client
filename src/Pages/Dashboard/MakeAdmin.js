@@ -28,8 +28,8 @@ const MakeAdmin = () => {
       }
   }
   return (
-    <div>
-      <h4>Users{users.length}</h4>
+    <div className="shadow rounded p-4">
+      <h4 style={{color:'#CB4695'}}>Users</h4>
       <table class="table">
         <thead>
           <tr>

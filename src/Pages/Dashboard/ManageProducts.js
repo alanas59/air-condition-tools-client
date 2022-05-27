@@ -4,32 +4,31 @@ import { toast } from "react-toastify";
 const ManageProducts = () => {
   const [products, setProducts] = useState([]);
   const [success, setSuccess] = useState(false);
-  const [modal,setModal] = useState(false);
+  const [modal, setModal] = useState(false);
+  const [productId, setProductId] = useState("");
   useEffect(() => {
     fetch("http://localhost:5000/products")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, [success]);
   const handleDelete = (id) => {
-    if (window.confirm("Do you want delte?")) {
-      fetch(`http://localhost:5000/product/${id}`, {
-        method: "DELETE",
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.deletedCount) {
-            toast("Successfully Deleted");
-            setSuccess(!success);
-          }
-        });
-    }
+    fetch(`http://localhost:5000/product/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount) {
+          toast("Successfully Deleted");
+          setSuccess(!success);
+        }
+      });
   };
-  const handleModal = () =>{
+  const handleModal = () => {
     setModal(!modal);
-  }
+  };
   return (
-    <div>
-      <h4>Manage Products</h4>
+    <div className="shadow rounded p-4">
+      <h4 style={{ color: "#CB4695" }}>Manage Products</h4>
       <table class="table">
         <thead>
           <tr>
@@ -51,7 +50,10 @@ const ManageProducts = () => {
               <td>{product.quantity}</td>
               <td>
                 <button
-                  onClick={() => handleDelete(product._id)}
+                  type="button"
+                  onClick={() => setProductId(product._id)}
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
                   className="btn btn-danger"
                 >
                   Delete
@@ -61,56 +63,47 @@ const ManageProducts = () => {
           ))}
         </tbody>
       </table>
-
-      <button
-        type="button"
-        class="btn btn-primary"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-        onClick={handleModal}
+      {/* Modal */}
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
       >
-        Launch demo modal
-      </button>
-      {
-         modal ?
-         <div
-         class="modal fade"
-         id="exampleModal"
-         tabindex="-1"
-         aria-labelledby="exampleModalLabel"
-         aria-hidden="true"
-       >
-         <div class="modal-dialog">
-           <div class="modal-content">
-             <div class="modal-header">
-               <h5 class="modal-title" id="exampleModalLabel">
-                 Modal title
-               </h5>
-               <button
-                 type="button"
-                 class="btn-close"
-                 data-bs-dismiss="modal"
-                 aria-label="Close"
-               ></button>
-             </div>
-             <div class="modal-body">...</div>
-             <div class="modal-footer">
-               <button
-                 type="button"
-                 class="btn btn-secondary"
-                 data-bs-dismiss="modal"
-               >
-                 Close
-               </button>
-               <button type="button" class="btn btn-primary">
-                 Save changes
-               </button>
-             </div>
-           </div>
-         </div>
-       </div> : ''
-      }
-     
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">
+                Do you want to delete this product?
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                onClick={() => handleDelete(productId)}
+                class="btn btn-primary"
+              >
+                yes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

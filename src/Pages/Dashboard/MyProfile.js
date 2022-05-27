@@ -41,8 +41,8 @@ const MyProfile = () => {
   };
   return (
     <div>
-      <div className="border p-5">
-        <h4>My Profile</h4>
+      <div className="shadow rounded p-5">
+        <h4 style={{color:'#CB4695'}}>My Profile</h4>
         <form onSubmit={handleSubmit}>
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">

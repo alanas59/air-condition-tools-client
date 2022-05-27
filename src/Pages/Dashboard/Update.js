@@ -63,8 +63,8 @@ const Update = () => {
   }
   
   return (
-    <div>
-      <h4>Update</h4>
+    <div className="shadow rounded p-4">
+      <h4 style={{color:'#CB4695'}}>Update</h4>
       <form onSubmit={handleSubmit}>
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">

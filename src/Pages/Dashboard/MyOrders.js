@@ -35,8 +35,8 @@ const MyOrders = () => {
     navigate(`/dashboard/payment/${id}`)
   }
   return (
-    <div>
-      <h2>My Orders{orders.length}</h2>
+    <div className="shadow rounded p-4">
+      <h2 style={{color:'#CB4695'}}>My Orders</h2>
       <table class="table">
         <thead>
           <tr>

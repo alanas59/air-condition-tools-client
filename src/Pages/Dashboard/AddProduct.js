@@ -35,8 +35,8 @@ const AddProduct = () => {
       })
   }
   return (
-    <div className="border p-4">
-      <h4>Add a product</h4>
+    <div className="shadow rounded p-4">
+      <h4 style={{color:'#CB4695'}}>Add a product</h4>
       <form onSubmit={handleProduct}>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">
@@ -111,8 +111,8 @@ const AddProduct = () => {
           />
         </div>
 
-        <button type="submit" class="btn btn-primary">
-          Submit
+        <button type="submit" class="btn btn-info">
+          Add
         </button>
       </form>
     </div>

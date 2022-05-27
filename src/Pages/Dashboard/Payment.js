@@ -20,11 +20,11 @@ const Payment = () => {
   }, []);
   return (
     <div className="row">
-      <div className="col-lg-12 border p-4">
+      <div className="col-lg-12 p-4 shadow rounded">
         <p>Hello,{order.uname ? order?.uname : "Customer"}</p>
         <p>Please pay : {order.price}</p>
       </div>
-      <div className="col-lg-8 border mt-3 p-4">
+      <div className="col-lg-8  mt-5 p-4 shadow rounded">
         <Elements stripe={stripePromise}>
           <CheckoutForm order={order} />
         </Elements>
