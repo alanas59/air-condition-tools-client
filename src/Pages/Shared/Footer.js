@@ -1,13 +1,16 @@
 import React from "react";
-import './Footer.css';
+import "./Footer.css";
 
 const Footer = () => {
   return (
     <div className="footer">
       <div className="row mx-4">
         <div className="col-lg-4">
-           <p className="mt-5">Designed and built with all the love in the world by the Bootstrap team with the help of our contributors.</p>
-           <p>Code licensed MIT, docs CC BY 3.0.</p>
+          <p className="mt-5">
+            Designed and built with all the love in the world by the Bootstrap
+            team with the help of our contributors.
+          </p>
+          <p>Code licensed MIT, docs CC BY 3.0.</p>
         </div>
         <div className="col-lg-8">
           <div className="row">
@@ -46,7 +49,6 @@ const Footer = () => {
                 <li>
                   <a href="">Parcel</a>
                 </li>
-               
               </ul>
             </div>
             <div className="col-lg-3">
@@ -64,7 +66,6 @@ const Footer = () => {
                 <li>
                   <a href="">Parcel</a>
                 </li>
-               
               </ul>
             </div>
             <div className="col-lg-3">
@@ -82,7 +83,6 @@ const Footer = () => {
                 <li>
                   <a href="">Parcel</a>
                 </li>
-               
               </ul>
             </div>
           </div>

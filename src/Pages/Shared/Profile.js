@@ -3,7 +3,7 @@ import React from "react";
 const Profile = () => {
   return (
     <div className="container">
-      <h2 className="text-center my-5" style={{ color: "#5A37D7" }}>
+      <h2 className="text-center mt-5 mb-3" style={{ color: "#5A37D7" }}>
         My Profile
       </h2>
       <div class="w-50 mx-auto mb-5 shadow rounded" style={{}}>

@@ -9,25 +9,27 @@ const CheckoutForm = (props) => {
   const [clientSecret, setClientSecret] = useState("");
   const [transactionId, setTransactionId] = useState("");
   const { order } = props;
-  const { price ,email,_id} = order;
+  const { price, email, _id } = order;
 
   useEffect(() => {
     if (price) {
-      fetch("http://localhost:5000/create-payment-intent", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({ price }),
-      })
+      fetch(
+        "https://sheltered-bastion-67310.herokuapp.com/create-payment-intent",
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ price }),
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
-          localStorage.setItem('clientSecret',data?.clientSecret);
+          localStorage.setItem("clientSecret", data?.clientSecret);
           setClientSecret(data?.clientSecret);
         });
-    }
-    else{
-        console.log('No');
+    } else {
+      console.log("No");
     }
   }, [price]);
 
@@ -56,41 +58,38 @@ const CheckoutForm = (props) => {
       setCardError("");
     }
     //confirm card payment
-    const {paymentIntent, error:intentError} = await stripe.confirmCardPayment(
-        clientSecret,
-        {
-          payment_method: {
-            card: card,
-            billing_details: {
-              email
-            },
+    const { paymentIntent, error: intentError } =
+      await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: card,
+          billing_details: {
+            email,
           },
         },
-      );
+      });
 
-    if(intentError){
-        setCardError(intentError);
-    }
-    else{
-        setCardError('');
-        console.log(paymentIntent)
-        setTransactionId(paymentIntent.id);
-        setSuccess('Congrats!your payment is confirmed.')
-        const payment = {
-            productId:_id,
-            transactionId:paymentIntent.id
-        }
-        fetch(`http://localhost:5000/order/${_id}`,{
-            method:'PATCH',
-            headers:{
-                'content-type':'application/json'
-            },
-            body:JSON.stringify(payment)
-        })
-        .then(res=>res.json())
-        .then(data => {
-            console.log('Order anas',data);
-        })
+    if (intentError) {
+      setCardError(intentError);
+    } else {
+      setCardError("");
+      console.log(paymentIntent);
+      setTransactionId(paymentIntent.id);
+      setSuccess("Congrats!your payment is confirmed.");
+      const payment = {
+        productId: _id,
+        transactionId: paymentIntent.id,
+      };
+      fetch(`https://sheltered-bastion-67310.herokuapp.com/order/${_id}`, {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(payment),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("Order anas", data);
+        });
     }
   };
 
@@ -122,12 +121,15 @@ const CheckoutForm = (props) => {
         </button>
       </form>
       {cardError && <p className="text-danger mt-3">{cardError}</p>}
-      {success && <>
-        <p className="text-primary mt-3">{success}</p>
-        <p className="mt-3">
-            Your transactionId :<span className="text-success">{transactionId}</span>
-        </p>
-      </>}
+      {success && (
+        <>
+          <p className="text-primary mt-3">{success}</p>
+          <p className="mt-3">
+            Your transactionId :
+            <span className="text-success">{transactionId}</span>
+          </p>
+        </>
+      )}
     </>
   );
 };

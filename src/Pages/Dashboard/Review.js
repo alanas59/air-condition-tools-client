@@ -9,13 +9,13 @@ const Review = () => {
   const { register, handleSubmit } = useForm();
   console.log(user);
   const onSubmit = (data) => {
-     const review = {
-        name:user.displayName,
-        email:user.email,
-        rating:data.rating,
-        description:data.description
-    }
-    fetch("http://localhost:5000/review", {
+    const review = {
+      name: user.displayName,
+      email: user.email,
+      rating: data.rating,
+      description: data.description,
+    };
+    fetch("https://sheltered-bastion-67310.herokuapp.com/review", {
       method: "POST", // or 'PUT'
       headers: {
         "Content-Type": "application/json",
@@ -24,18 +24,18 @@ const Review = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if(data.insertedId){
-            toast.success('Thanks for your review');
+        if (data.insertedId) {
+          toast.success("Thanks for your review");
         }
       });
   };
 
   return (
     <div className="col-lg-8 shadow rounded p-4">
-      <h2 style={{color:'#CB4695'}}>Review</h2>
+      <h2 style={{ color: "#CB4695" }}>Review</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">
+        <div className="mb-3">
+          <label for="exampleFormControlInput1" className="form-label">
             Please rate
           </label>
           <input
@@ -43,17 +43,19 @@ const Review = () => {
             {...register("rating")}
             min="1"
             max="5"
-            class="form-control"
+            required
+            className="form-control"
             id="exampleFormControlInput1"
           />
         </div>
-        <div class="mb-3">
-          <label for="exampleFormControlTextarea1" class="form-label">
+        <div className="mb-3">
+          <label for="exampleFormControlTextarea1" className="form-label">
             Write Something
           </label>
           <textarea
-            class="form-control"
+            className="form-control"
             {...register("description")}
+            required
             id="exampleFormControlTextarea1"
             rows="3"
           ></textarea>

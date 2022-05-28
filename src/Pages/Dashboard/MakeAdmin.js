@@ -4,32 +4,31 @@ import { toast } from "react-toastify";
 const MakeAdmin = () => {
   const [users, setUsers] = useState([]);
   const [success, setSuccess] = useState(false);
-  const [userId,setUserId] = useState("");
+  const [userId, setUserId] = useState("");
+
   useEffect(() => {
-    fetch("http://localhost:5000/users")
+    fetch("https://sheltered-bastion-67310.herokuapp.com/users")
       .then((res) => res.json())
       .then((data) => setUsers(data));
   }, [success]);
 
   const handleMakeAdmin = (id) => {
-    if (window.confirm("Do you want make admin?")) {
-      fetch(`http://localhost:5000/makeAdmin/${id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data) {
-            toast("Made admin");
-            setSuccess(!success);
-          }
-        });
-    }
+    fetch(`https://sheltered-bastion-67310.herokuapp.com/makeAdmin/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data) {
+          toast("Made admin");
+          setSuccess(!success);
+        }
+      });
   };
   const handleDelete = (id) => {
-    const url = `http://localhost:5000/makeAdmin/${id}`;
+    const url = `https://sheltered-bastion-67310.herokuapp.com/makeAdmin/${id}`;
     fetch(url, {
       method: "DELETE",
     })
@@ -45,7 +44,7 @@ const MakeAdmin = () => {
   return (
     <div className="shadow rounded p-4">
       <h4 style={{ color: "#CB4695" }}>Users</h4>
-      <table class="table">
+      <table className="table">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -64,7 +63,9 @@ const MakeAdmin = () => {
               <td>
                 {user.role !== "admin" ? (
                   <button
-                    onClick={() => handleMakeAdmin(user._id)}
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal1"
+                    onClick={() => setUserId(user._id)}
                     className="btn btn-info"
                   >
                     Make admin
@@ -77,7 +78,8 @@ const MakeAdmin = () => {
                 <button
                   onClick={() => setUserId(user._id)}
                   className="btn btn-danger"
-                  data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
                 >
                   Delete
                 </button>
@@ -89,40 +91,83 @@ const MakeAdmin = () => {
 
       {/* modal */}
       <div
-        class="modal fade"
+        className="modal fade"
         id="exampleModal"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">
                 Do you want to delete this user?
               </h5>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-           
-            <div class="modal-footer">
+
+            <div className="modal-footer">
               <button
                 type="button"
-                class="btn btn-secondary"
+                className="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
                 no
               </button>
               <button
-               type="button" 
-               class="btn btn-primary"
-               data-bs-dismiss="modal"
-               onClick={()=>handleDelete(userId)}
-               >
+                type="button"
+                className="btn btn-primary"
+                data-bs-dismiss="modal"
+                onClick={() => handleDelete(userId)}
+              >
+                yes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* modal2 */}
+      <div
+        className="modal fade"
+        id="exampleModal1"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">
+                Do you want to make admin this user?
+              </h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                no
+              </button>
+              <button
+                type="button"
+                className="btn btn-primary"
+                data-bs-dismiss="modal"
+                onClick={() => handleMakeAdmin(userId)}
+              >
                 yes
               </button>
             </div>

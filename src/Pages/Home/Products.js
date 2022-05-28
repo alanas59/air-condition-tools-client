@@ -4,7 +4,12 @@ import Product from "./Product";
 const Products = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/products")
+    fetch("https://sheltered-bastion-67310.herokuapp.com/products", {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
@@ -13,11 +18,9 @@ const Products = () => {
       <h2 className="text-center">Our Tools</h2>
       <div className="container">
         <div className="row">
-          {
-              products.map(product => <Product
-              product={product}
-              ></Product>)
-          }
+          {products?.map((product) => (
+            <Product key={product._id} product={product}></Product>
+          ))}
         </div>
       </div>
     </div>

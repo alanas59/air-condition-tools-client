@@ -11,7 +11,7 @@ const MyOrders = () => {
   const [orderId, setOrderId] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
-    fetch(`http://localhost:5000/orders/${user?.email}`)
+    fetch(`https://sheltered-bastion-67310.herokuapp.com/orders/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -19,7 +19,7 @@ const MyOrders = () => {
       });
   }, [user, success]);
   const handleCancel = (id) => {
-    fetch(`http://localhost:5000/order/${id}`, {
+    fetch(`https://sheltered-bastion-67310.herokuapp.com/order/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -36,7 +36,7 @@ const MyOrders = () => {
   return (
     <div className="p-4">
       <h2 style={{ color: "#CB4695" }}>My Orders</h2>
-      <table class="table shadow rounded mt-4">
+      <table className="table shadow rounded mt-4">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -83,29 +83,29 @@ const MyOrders = () => {
       </table>
       {/* modal */}
       <div
-        class="modal fade"
+        className="modal fade"
         id="exampleModal"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">
                 Do you want to cancel this order?
               </h5>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 type="button"
-                class="btn btn-secondary"
+                className="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
                 no
@@ -113,7 +113,7 @@ const MyOrders = () => {
               <button
                 type="button"
                 data-bs-dismiss="modal"
-                class="btn btn-primary"
+                className="btn btn-primary"
                 onClick={() => handleCancel(orderId)}
               >
                 yes

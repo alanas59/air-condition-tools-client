@@ -9,7 +9,7 @@ const Address = () => {
       <div className="row">
         <div className="col-lg-4  d-flex mb-4">
           <div className="me-2">
-            <FaMapMarkerAlt  style={{fontSize:'30px'}}/>
+            <FaMapMarkerAlt style={{ fontSize: "30px" }} />
           </div>
           <div className="">
             <p>
@@ -23,7 +23,7 @@ const Address = () => {
         </div>
         <div className="col-lg-4 d-flex mb-4">
           <div className="me-2">
-            <HiPhone style={{fontSize:'30px'}} />
+            <HiPhone style={{ fontSize: "30px" }} />
           </div>
           <div>
             <small>Call Now Fast Service</small>

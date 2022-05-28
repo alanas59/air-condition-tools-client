@@ -12,7 +12,7 @@ const Login = () => {
   const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
-    
+
   let from = location.state?.from?.pathname || "/";
 
   if (user || guser) {
@@ -20,10 +20,10 @@ const Login = () => {
     const email = user?.user.email || guser?.user.email;
     const data = {
       name,
-      email
+      email,
     };
-    
-    fetch("http://localhost:5000/user", {
+
+    fetch("https://sheltered-bastion-67310.herokuapp.com/user", {
       method: "PUT", // or 'PUT
       headers: {
         "Content-Type": "application/json",
@@ -33,9 +33,10 @@ const Login = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log("login", data);
+        localStorage.setItem("accesstoken", data.token);
       });
 
-      navigate(from, { replace: true });
+    navigate(from, { replace: true });
   }
   const handleLogin = (event) => {
     event.preventDefault();
@@ -45,28 +46,30 @@ const Login = () => {
   };
   return (
     <div className="row">
-      <div className="col-lg-6 mx-auto my-5 border p-5">
+      <div className="col-lg-6 mx-auto my-5  p-5 shadow rounded">
         <h2>Please login</h2>
         <form onSubmit={handleLogin}>
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">
+          <div className="mb-3">
+            <label for="exampleFormControlInput1" className="form-label">
               Email address
             </label>
             <input
               type="email"
               name="email"
-              class="form-control"
+              required
+              className="form-control"
               id="exampleFormControlInput1"
             />
           </div>
-          <div class="mb-3">
-            <label for="exampleFormControlInput2" class="form-label">
+          <div className="mb-3">
+            <label for="exampleFormControlInput2" className="form-label">
               Password
             </label>
             <input
               type="password"
               name="password"
-              class="form-control"
+              required
+              className="form-control"
               id="exampleFormControlInput2"
             />
           </div>

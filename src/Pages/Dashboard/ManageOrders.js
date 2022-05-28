@@ -2,18 +2,18 @@ import React, { useEffect, useState } from "react";
 import ManageOrder from "./ManageOrder";
 
 const ManageOrders = () => {
-  const [orders,setOrders] = useState([]);
-  const [success,setSuccess] = useState(false);
-  useEffect(()=>{
-      fetch('http://localhost:5000/orders')
-      .then(res => res.json())
-      .then(data => setOrders(data))
-  },[success])
+  const [orders, setOrders] = useState([]);
+  const [success, setSuccess] = useState(false);
+  useEffect(() => {
+    fetch("https://sheltered-bastion-67310.herokuapp.com/orders")
+      .then((res) => res.json())
+      .then((data) => setOrders(data));
+  }, [success]);
   console.log(success);
   return (
     <div>
-      <h4 style={{ color:"#CB4695" }}>Manage Orders</h4>
-      <table class="table shadow rounded mt-4">
+      <h4 style={{ color: "#CB4695" }}>Manage Orders</h4>
+      <table className="table shadow rounded mt-4">
         <thead>
           <tr>
             <th scope="col">Customer email</th>
@@ -25,14 +25,13 @@ const ManageOrders = () => {
           </tr>
         </thead>
         <tbody>
-          {
-              orders.map(order => 
-              <ManageOrder
+          {orders.map((order) => (
+            <ManageOrder
               order={order}
               success={success}
               setSuccess={setSuccess}
-              ></ManageOrder>)
-          }
+            ></ManageOrder>
+          ))}
         </tbody>
       </table>
     </div>

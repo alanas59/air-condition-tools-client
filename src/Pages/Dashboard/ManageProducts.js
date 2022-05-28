@@ -7,12 +7,17 @@ const ManageProducts = () => {
   const [modal, setModal] = useState(false);
   const [productId, setProductId] = useState("");
   useEffect(() => {
-    fetch("http://localhost:5000/products")
+    fetch("https://sheltered-bastion-67310.herokuapp.com/products", {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, [success]);
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/product/${id}`, {
+    fetch(`https://sheltered-bastion-67310.herokuapp.com/product/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -29,7 +34,7 @@ const ManageProducts = () => {
   return (
     <div className="shadow rounded p-4">
       <h4 style={{ color: "#CB4695" }}>Manage Products</h4>
-      <table class="table">
+      <table className="table">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -40,10 +45,10 @@ const ManageProducts = () => {
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => (
+          {products?.map((product) => (
             <tr>
               <td>
-                <img style={{ width: "100px" }} src={product.img}  alt="..."/>
+                <img style={{ width: "100px" }} src={product.img} alt="..." />
               </td>
               <td>{product.name}</td>
               <td>{product.price}</td>
@@ -65,30 +70,30 @@ const ManageProducts = () => {
       </table>
       {/* Modal */}
       <div
-        class="modal fade"
+        className="modal fade"
         id="exampleModal"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">
                 Do you want to delete this product?
               </h5>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
 
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 type="button"
-                class="btn btn-secondary"
+                className="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
                 Close
@@ -96,7 +101,7 @@ const ManageProducts = () => {
               <button
                 type="button"
                 onClick={() => handleDelete(productId)}
-                class="btn btn-primary"
+                className="btn btn-primary"
                 data-bs-dismiss="modal"
               >
                 yes

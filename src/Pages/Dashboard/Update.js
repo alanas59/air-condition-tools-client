@@ -5,25 +5,25 @@ import { toast } from "react-toastify";
 const Update = () => {
   const { email } = useParams();
   const [user, setUser] = useState({});
-  const [education,setEducation] = useState("");
-  const [location,setLocation] = useState("");
-  const [phone,setPhone] = useState("");
-  const [profile,setProfile] = useState("");
-  const handleEducation = event =>{
-      setEducation(event.target.value);
-  }
-  const handleLocation = event =>{
-      setLocation(event.target.value);
-  }
-  const handlePhone= event =>{
-      setPhone(event.target.value);
-  }
-  const handleProfile = event =>{
-      setProfile(event.target.value);
-  }
-  
+  const [education, setEducation] = useState("");
+  const [location, setLocation] = useState("");
+  const [phone, setPhone] = useState("");
+  const [profile, setProfile] = useState("");
+  const handleEducation = (event) => {
+    setEducation(event.target.value);
+  };
+  const handleLocation = (event) => {
+    setLocation(event.target.value);
+  };
+  const handlePhone = (event) => {
+    setPhone(event.target.value);
+  };
+  const handleProfile = (event) => {
+    setProfile(event.target.value);
+  };
+
   useEffect(() => {
-    fetch(`http://localhost:5000/user/${email}`)
+    fetch(`https://sheltered-bastion-67310.herokuapp.com/user/${email}`)
       .then((res) => res.json())
       .then((data) => {
         setUser(data);
@@ -31,43 +31,41 @@ const Update = () => {
         setLocation(data.location);
         setPhone(data.phone);
         setProfile(data.profile);
-       
       });
   }, []);
-  const handleSubmit = event =>{
-      event.preventDefault();
-      const data = {
-          name:user?.name,
-          email:user?.email,
-          education,
-          location,
-          phone,
-          profile
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = {
+      name: user?.name,
+      email: user?.email,
+      education,
+      location,
+      phone,
+      profile,
+    };
 
-      }
+    fetch("https://sheltered-bastion-67310.herokuapp.com/userUpdate", {
+      method: "PATCH", // or 'PUT
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result) {
+          console.log(result);
+          toast.success("Updated");
+        }
+      });
+  };
 
-      fetch("http://localhost:5000/userUpdate", {
-        method: "PATCH", // or 'PUT
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          if (result) {
-             console.log(result)
-             toast.success('Updated');
-          }
-        });
-  }
-  
   return (
     <div className="shadow rounded p-4">
-      <h4 style={{color:'#CB4695'}}>Update</h4>
+      <h4 style={{ color: "#CB4695" }}>Update</h4>
       <form onSubmit={handleSubmit}>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">
+        <div className="mb-3">
+          <label for="exampleFormControlInput1" className="form-label">
             Your Name
           </label>
           <input
@@ -75,12 +73,12 @@ const Update = () => {
             name="name"
             disabled
             value={user?.name}
-            class="form-control"
+            className="form-control"
             id="exampleFormControlInput1"
           />
         </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">
+        <div className="mb-3">
+          <label for="exampleFormControlInput1" className="form-label">
             Email address
           </label>
           <input
@@ -88,59 +86,63 @@ const Update = () => {
             name="email"
             disabled
             value={user?.email}
-            class="form-control"
+            className="form-control"
             id="exampleFormControlInput1"
           />
         </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">
+        <div className="mb-3">
+          <label for="exampleFormControlInput1" className="form-label">
             Your Education
           </label>
           <input
             type="text"
             name="education"
             value={education}
+            required
             onChange={handleEducation}
-            class="form-control"
+            className="form-control"
             id="exampleFormControlInput1"
           />
         </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput2" class="form-label">
+        <div className="mb-3">
+          <label for="exampleFormControlInput2" className="form-label">
             Your location
           </label>
           <input
             type="text"
             name="location"
             value={location}
+            required
             onChange={handleLocation}
-            class="form-control"
+            className="form-control"
             id="exampleFormControlInput2"
           />
         </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput2" class="form-label">
+        <div className="mb-3">
+          <label for="exampleFormControlInput2" className="form-label">
             Phone number
           </label>
           <input
             type="text"
             name="phone"
             value={phone}
+            required
             onChange={handlePhone}
-            class="form-control"
+            className="form-control"
             id="exampleFormControlInput2"
           />
         </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput2" class="form-label">
+        <div className="mb-3">
+          <label for="exampleFormControlInput2" className="form-label">
             Linkedin profile link
           </label>
           <input
             type="text"
             name="profile"
             value={profile}
+            required
             onChange={handleProfile}
-            class="form-control"
+            className="form-control"
             id="exampleFormControlInput2"
           />
         </div>

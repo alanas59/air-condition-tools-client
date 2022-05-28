@@ -24,7 +24,7 @@ const MyProfile = () => {
       phone,
       profile,
     };
-    fetch("http://localhost:5000/user", {
+    fetch("https://sheltered-bastion-67310.herokuapp.com/user", {
       method: "PUT", // or 'PUT
       headers: {
         "Content-Type": "application/json",
@@ -42,75 +42,81 @@ const MyProfile = () => {
   return (
     <div>
       <div className="shadow rounded p-5">
-        <h4 style={{color:'#CB4695'}}>My Profile</h4>
+        <h4 style={{ color: "#CB4695" }}>My Profile</h4>
         <form onSubmit={handleSubmit}>
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">
+          <div className="mb-3">
+            <label for="exampleFormControlInput1" className="form-label">
               Your Name
             </label>
             <input
               type="text"
               name="name"
+              required
               disabled
               value={user?.displayName}
-              class="form-control"
+              className="form-control"
               id="exampleFormControlInput1"
             />
           </div>
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">
+          <div className="mb-3">
+            <label for="exampleFormControlInput1" className="form-label">
               Email address
             </label>
             <input
               type="email"
               name="email"
+              required
               disabled
               value={user?.email}
-              class="form-control"
+              className="form-control"
               id="exampleFormControlInput1"
             />
           </div>
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">
+          <div className="mb-3">
+            <label for="exampleFormControlInput1" className="form-label">
               Your Education
             </label>
             <input
               type="text"
               name="education"
-              class="form-control"
+              required
+              className="form-control"
               id="exampleFormControlInput1"
             />
           </div>
-          <div class="mb-3">
-            <label for="exampleFormControlInput2" class="form-label">
+          <div className="mb-3">
+            <label for="exampleFormControlInput2" className="form-label">
               Your location
             </label>
             <input
               type="text"
               name="location"
-              class="form-control"
+              required
+              className="form-control"
               id="exampleFormControlInput2"
             />
           </div>
-          <div class="mb-3">
-            <label for="exampleFormControlInput2" class="form-label">
+          <div className="mb-3">
+            <label for="exampleFormControlInput2" className="form-label">
               Phone number
             </label>
             <input
               type="text"
               name="phone"
-              class="form-control"
+              required
+              className="form-control"
               id="exampleFormControlInput2"
             />
           </div>
-          <div class="mb-3">
-            <label for="exampleFormControlInput2" class="form-label">
+          <div className="mb-3">
+            <label for="exampleFormControlInput2" className="form-label">
               Linkedin profile link
             </label>
             <input
               type="text"
               name="profile"
-              class="form-control"
+              required
+              className="form-control"
               id="exampleFormControlInput2"
             />
           </div>

@@ -9,6 +9,7 @@ const Header = () => {
   const navigate = useNavigate();
   const logout = () => {
     signOut(auth);
+    localStorage.removeItem("accessToken");
     navigate("/login");
   };
 
@@ -41,21 +42,16 @@ const Header = () => {
                 Blogs
               </Link>
             </li>
-            {
-             user && (
+            {user && (
               <li className="nav-item">
-                <Link
-                  className="nav-link"
-                 
-                  to="/dashboard"
-                >
+                <Link className="nav-link" to="/dashboard">
                   Dashboard
                 </Link>
               </li>
             )}
-             <li className="nav-item">
+            <li className="nav-item">
               <Link className="nav-link" to="/profile">
-                 My Profile
+                My Profile
               </Link>
             </li>
             <li className="nav-item">
@@ -69,8 +65,6 @@ const Header = () => {
                 </Link>
               )}
             </li>
-           
-        
           </ul>
         </div>
       </div>

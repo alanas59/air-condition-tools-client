@@ -9,9 +9,9 @@ const stripePromise = loadStripe(
 const Payment = () => {
   const { id } = useParams();
   const [order, setOrder] = useState({});
-  
+
   useEffect(() => {
-    fetch(`http://localhost:5000/order/${id}`)
+    fetch(`https://sheltered-bastion-67310.herokuapp.com/order/${id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
