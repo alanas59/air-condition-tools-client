@@ -21,6 +21,8 @@ import AddProduct from "./Pages/Dashboard/AddProduct";
 import Purchase from "./Pages/Purchase/Purchase";
 import Payment from "./Pages/Dashboard/Payment";
 import ManageOrders from "./Pages/Dashboard/ManageOrders";
+import Profile from "./Pages/Shared/Profile";
+
 
 function App() {
   return (
@@ -50,7 +52,9 @@ function App() {
         </Route>
           {/* nested route */}
         <Route path="/purchase/:id" element={<Purchase></Purchase>} />
+        <Route path="/profile" element={<Profile></Profile>}/>
         <Route path="*" element={<NotFound></NotFound>} />
+     
       </Routes>
       <Footer></Footer>
       <ToastContainer />

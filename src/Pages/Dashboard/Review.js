@@ -2,19 +2,18 @@ import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
+import { useForm } from "react-hook-form";
 
 const Review = () => {
   const [user] = useAuthState(auth);
+  const { register, handleSubmit } = useForm();
   console.log(user);
-  const handleReview = (event) => {
-    event.preventDefault();
-    const rating = event.target.rating.value;
-    const description = event.target.description.value;
-    const review = {
+  const onSubmit = (data) => {
+     const review = {
         name:user.displayName,
         email:user.email,
-        rating,
-        description
+        rating:data.rating,
+        description:data.description
     }
     fetch("http://localhost:5000/review", {
       method: "POST", // or 'PUT'
@@ -30,17 +29,18 @@ const Review = () => {
         }
       });
   };
+
   return (
     <div className="col-lg-8 shadow rounded p-4">
       <h2 style={{color:'#CB4695'}}>Review</h2>
-      <form onSubmit={handleReview}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">
             Please rate
           </label>
           <input
             type="number"
-            name="rating"
+            {...register("rating")}
             min="1"
             max="5"
             class="form-control"
@@ -53,7 +53,7 @@ const Review = () => {
           </label>
           <textarea
             class="form-control"
-            name="description"
+            {...register("description")}
             id="exampleFormControlTextarea1"
             rows="3"
           ></textarea>
