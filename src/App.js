@@ -22,7 +22,7 @@ import Purchase from "./Pages/Purchase/Purchase";
 import Payment from "./Pages/Dashboard/Payment";
 import ManageOrders from "./Pages/Dashboard/ManageOrders";
 import Profile from "./Pages/Shared/Profile";
-
+import RequireAuth from "./Pages/Login/RequireAuth";
 
 function App() {
   return (
@@ -50,11 +50,17 @@ function App() {
           <Route path="my-orders" element={<MyOrders></MyOrders>} />
           <Route path="manage-orders" element={<ManageOrders></ManageOrders>} />
         </Route>
-          {/* nested route */}
-        <Route path="/purchase/:id" element={<Purchase></Purchase>} />
-        <Route path="/profile" element={<Profile></Profile>}/>
+        {/* nested route */}
+        <Route
+          path="/purchase/:id"
+          element={
+            <RequireAuth>
+              <Purchase></Purchase>
+            </RequireAuth>
+          }
+        />
+        <Route path="/profile" element={<Profile></Profile>} />
         <Route path="*" element={<NotFound></NotFound>} />
-     
       </Routes>
       <Footer></Footer>
       <ToastContainer />

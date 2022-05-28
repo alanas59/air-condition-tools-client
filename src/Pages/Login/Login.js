@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
@@ -8,9 +8,12 @@ import auth from "../../firebase.init";
 
 const Login = () => {
   const navigate = useNavigate();
+  let location = useLocation();
   const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
+    
+  let from = location.state?.from?.pathname || "/";
 
   if (user || guser) {
     const name = user?.user.displayName || guser?.user.displayName;
@@ -32,7 +35,7 @@ const Login = () => {
         console.log("login", data);
       });
 
-    navigate("/");
+      navigate(from, { replace: true });
   }
   const handleLogin = (event) => {
     event.preventDefault();
