@@ -39,8 +39,8 @@ const ManageOrder = (props) => {
       <tr>
         <td>{email}</td>
         <td>{productId}</td>
-        <td>{paymentId}</td>
-        <td className="text-warning fw-bold">{paid ? "Paid" : "Unpaid"}</td>
+        <td>{paymentId ? paymentId  : <p className="text-danger">No</p>}</td>
+        <td className="text-warning fw-bold">{paid ? "Paid" : "unpaid"}</td>
         <td>
           {!status ? (
             <button className="btn btn-info" onClick={() => handlePending(_id)}>

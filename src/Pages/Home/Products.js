@@ -10,7 +10,7 @@ const Products = () => {
   }, []);
   return (
     <div className="my-5">
-      <h2 className="text-center text-primary">Our Tools</h2>
+      <h2 className="text-center">Our Tools</h2>
       <div className="container">
         <div className="row">
           {

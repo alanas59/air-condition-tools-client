@@ -15,7 +15,7 @@ const Reviews = () => {
       <h2 className="text-center">Our customers are saying about...</h2>
       <div className="row mt-3 mb-5">
         {
-            reviews.map(review => 
+            reviews.slice(0,6).map(review => 
             <Review
             review={review}
             ></Review>)
